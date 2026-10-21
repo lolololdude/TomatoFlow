@@ -1,0 +1,11 @@
+bin/
+obj/
+publish/
+release/
+build-tool.config.json
+__pycache__/
+.vs/
+*.user
+*.suo
+*.log
+TomatoFlow.sln

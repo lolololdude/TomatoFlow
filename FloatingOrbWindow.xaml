@@ -1,0 +1,62 @@
+<Window x:Class="TomatoFlow.FloatingOrbWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tomato Flow Orb"
+        Width="158"
+        Height="182"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        SnapsToDevicePixels="True">
+
+    <Grid x:Name="Root" Background="Transparent" Cursor="SizeAll">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="124" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Canvas x:Name="HaloCanvas" Grid.Row="0" Width="124" Height="124" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Ellipse x:Name="RingTwo" Width="116" Height="116" Stroke="#3AFF5A3C" StrokeThickness="1.2"
+                     Canvas.Left="4" Canvas.Top="4">
+                <Ellipse.RenderTransform>
+                    <ScaleTransform x:Name="RingTwoScale" CenterX="58" CenterY="58" />
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse x:Name="RingOne" Width="102" Height="102" Stroke="#66FF5A3C" StrokeThickness="1.4"
+                     Canvas.Left="11" Canvas.Top="11">
+                <Ellipse.RenderTransform>
+                    <ScaleTransform x:Name="RingOneScale" CenterX="51" CenterY="51" />
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Border x:Name="OrbBorder" Width="86" Height="86" CornerRadius="43" Canvas.Left="19" Canvas.Top="19"
+                    Background="#26110E" BorderBrush="#FF5A3C" BorderThickness="1.6">
+                <Border.Effect>
+                    <DropShadowEffect x:Name="OrbGlow" Color="#FF5A3C" BlurRadius="26" ShadowDepth="0" Opacity="0.55" />
+                </Border.Effect>
+                <Grid>
+                    <Image x:Name="TomatoGlyph" Source="pack://application:,,,/Assets/tomato.png" Width="62" Height="62"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Border x:Name="LogoClip" CornerRadius="43" ClipToBounds="True">
+                        <Image x:Name="OrbLogo" Stretch="UniformToFill" Visibility="Collapsed" />
+                    </Border>
+                </Grid>
+            </Border>
+        </Canvas>
+
+        <Border x:Name="StatusChip" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"
+                Background="#E61A0C09" BorderBrush="#6E2B22" BorderThickness="1" CornerRadius="10"
+                Padding="11,5" Margin="0,2,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse x:Name="StatusDot" Width="6" Height="6" Fill="{StaticResource AccentBrush}" Margin="0,0,7,0"
+                         VerticalAlignment="Center" />
+                <TextBlock x:Name="StatusText" Text="TOMATO FLOW" FontSize="9.5" FontWeight="SemiBold"
+                           Foreground="#FFF4EC" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

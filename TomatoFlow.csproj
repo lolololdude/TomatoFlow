@@ -1,0 +1,93 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Assets\tomatoflow.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>TomatoFlow</AssemblyName>
+    <RootNamespace>TomatoFlow</RootNamespace>
+    <Product>Tomato Flow</Product>
+    <Company>Tomato Flow</Company>
+    <Description>Offline voice dictation with maximum flow.</Description>
+    <Version>1.1.0</Version>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishSingleFile>false</PublishSingleFile>
+    <NoWarn>$(NoWarn);WFO0003</NoWarn>
+    <Edition Condition="'$(Edition)' == ''">Developer</Edition>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Edition)' == 'Developer'">
+    <FeatureAdsTab Condition="'$(FeatureAdsTab)' == ''">true</FeatureAdsTab>
+    <FeatureAdsSettings Condition="'$(FeatureAdsSettings)' == ''">true</FeatureAdsSettings>
+    <FeatureAdvanced Condition="'$(FeatureAdvanced)' == ''">true</FeatureAdvanced>
+    <FeatureAllAdFolders Condition="'$(FeatureAllAdFolders)' == ''">true</FeatureAllAdFolders>
+    <DefineConstants>$(DefineConstants);TOMATO_DEVELOPER</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Edition)' == 'Normal'">
+    <FeatureAdsTab Condition="'$(FeatureAdsTab)' == ''">true</FeatureAdsTab>
+    <FeatureAdsSettings Condition="'$(FeatureAdsSettings)' == ''">true</FeatureAdsSettings>
+    <FeatureAdvanced Condition="'$(FeatureAdvanced)' == ''">false</FeatureAdvanced>
+    <FeatureAllAdFolders Condition="'$(FeatureAllAdFolders)' == ''">true</FeatureAllAdFolders>
+    <DefineConstants>$(DefineConstants);TOMATO_NORMAL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Edition)' == 'Consumer'">
+    <FeatureAdsTab Condition="'$(FeatureAdsTab)' == ''">false</FeatureAdsTab>
+    <FeatureAdsSettings Condition="'$(FeatureAdsSettings)' == ''">false</FeatureAdsSettings>
+    <FeatureAdvanced Condition="'$(FeatureAdvanced)' == ''">false</FeatureAdvanced>
+    <FeatureAllAdFolders Condition="'$(FeatureAllAdFolders)' == ''">false</FeatureAllAdFolders>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(FeatureAdsTab)' == 'true'">
+    <DefineConstants>$(DefineConstants);TOMATO_ADS_TAB</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(FeatureAdsSettings)' == 'true'">
+    <DefineConstants>$(DefineConstants);TOMATO_ADS_SETTINGS</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(FeatureAdvanced)' == 'true'">
+    <DefineConstants>$(DefineConstants);TOMATO_ADVANCED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(FeatureAllAdFolders)' == 'true'">
+    <DefineConstants>$(DefineConstants);TOMATO_ALL_AD_FOLDERS</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibVLCSharp.WPF" Version="3.10.2" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.24" />
+    <PackageReference Include="Whisper.net" Version="1.9.1" />
+    <PackageReference Include="Whisper.net.Runtime" Version="1.9.1" />
+    <PackageReference Include="Whisper.net.Runtime.Cuda.Windows" Version="1.9.1" />
+    <PackageReference Include="Whisper.net.Runtime.Vulkan" Version="1.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\tomatoflow.ico" />
+    <Resource Include="Assets\tomato.png" />
+    <Content Include="Assets\Ads\**\*.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Update="Assets\tomatoflow.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
